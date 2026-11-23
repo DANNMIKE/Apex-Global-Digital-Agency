@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Global | Digital Strategy, Engineering & Automation</title>
+    <meta name="description" content="Apex Global helps ambitious companies turn complex digital challenges into faster growth, smarter operations, and measurable results.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#2563eb',
+                            600: '#1d4ed8',
+                            700: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        accent: {
+                            400: '#38bdf8',
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .glass-panel {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .dark .gradient-text {
+            background: linear-gradient(135deg, #60a5fa 0%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body x-data="{
+        darkMode: true,
+        mobileMenuOpen: false,
+        formSubmitted: false,
+        formError: '',
+        formData: { name: '', email: '', company: '', improve: '', investment: '', goals: '' },
+        submitForm() {
+            this.formError = '';
+            if (!this.formData.name.trim() || !this.formData.email.trim()) {
+                this.formError = 'Please add your name and work email so we can respond.';
+                return;
+            }
+            this.formSubmitted = true;
+        }
+    }"
+    :class="{ 'dark': darkMode, 'bg-slate-950 text-slate-100': darkMode, 'bg-slate-50 text-slate-900': !darkMode }"
+    class="transition-colors duration-300 antialiased min-h-screen selection:bg-brand-500 selection:text-white">
+
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-slate-200/50 dark:border-slate-800/50 glass-panel">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-accent-500 flex items-center justify-center text-white shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform">
+                    <i class="ph-bold ph-lightning text-xl"></i>
+                </div>
+                <span class="font-extrabold text-xl tracking-tight">
+                    APEX<span class="gradient-text">GLOBAL</span>
+                </span>
+            </a>
+
+            <nav class="hidden lg:flex items-center space-x-7 text-sm font-medium">
+                <a href="#services" class="hover:text-brand-500 dark:hover:text-accent-400 transition-colors">Services</a>
+                <a href="#how-we-help" class="hover:text-brand-500 dark:hover:text-accent-400 transition-colors">How We Help</a>
+                <a href="#results" class="hover:text-brand-500 dark:hover:text-accent-400 transition-colors">Results</a>
+                <a href="#investment" class="hover:text-brand-500 dark:hover:text-accent-400 transition-colors">Investment</a>
+                <a href="#stories" class="hover:text-brand-500 dark:hover:text-accent-400 transition-colors">Client Stories</a>
+            </nav>
+
+            <div class="hidden md:flex items-center space-x-3">
+                <button @click="darkMode = !darkMode" class="p-2 rounded-xl text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" aria-label="Toggle theme">
+                    <i class="ph-bold text-lg" :class="darkMode ? 'ph-sun' : 'ph-moon'"></i>
+                </button>
+                <a href="#contact" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-700 hover:to-accent-700 text-white font-semibold text-sm shadow-md shadow-brand-500/20 hover:shadow-lg hover:shadow-brand-500/30 transition-all">
+                    Book a Strategy Call
+                </a>
+            </div>
+
+            <div class="flex items-center gap-2 md:hidden">
+                <button @click="darkMode = !darkMode" class="p-2 rounded-lg text-slate-500 dark:text-slate-400" aria-label="Toggle theme">
+                    <i class="ph-bold text-lg" :class="darkMode ? 'ph-sun' : 'ph-moon'"></i>
+                </button>
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="p-2 rounded-lg text-slate-700 dark:text-slate-200" aria-label="Open menu">
+                    <i class="ph-bold text-2xl" :class="mobileMenuOpen ? 'ph-x' : 'ph-list'"></i>
+                </button>
+            </div>
+        </div>
+
+        <div x-show="mobileMenuOpen" x-transition class="md:hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 py-6 space-y-4">
+            <a @click="mobileMenuOpen = false" href="#services" class="block py-2 text-base font-medium">Services</a>
+            <a @click="mobileMenuOpen = false" href="#how-we-help" class="block py-2 text-base font-medium">How We Help</a>
+            <a @click="mobileMenuOpen = false" href="#results" class="block py-2 text-base font-medium">Results</a>
+            <a @click="mobileMenuOpen = false" href="#investment" class="block py-2 text-base font-medium">Investment</a>
+            <a @click="mobileMenuOpen = false" href="#stories" class="block py-2 text-base font-medium">Client Stories</a>
+            <a @click="mobileMenuOpen = false" href="#contact" class="block w-full text-center px-5 py-3 rounded-xl bg-brand-600 text-white font-semibold">
+                Book a Strategy Call
+            </a>
+        </div>
+    </header>
+
+    <section class="relative pt-36 pb-20 md:pt-44 md:pb-28 overflow-hidden">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-brand-500/20 to-accent-500/20 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-500/30 bg-brand-500/10 text-brand-600 dark:text-accent-400 text-xs sm:text-sm font-semibold tracking-wide mb-8">
+                Digital strategy, engineering &amp; automation
+            </p>
+
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight max-w-5xl mx-auto mb-8">
+                Build the digital systems your <span class="gradient-text">next stage of growth</span> demands.
+            </h1>
+
+            <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed">
+                Apex Global combines high-performance web engineering, practical AI automation, and conversion-focused growth strategy to help ambitious teams move faster and operate better.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+                <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-700 hover:to-accent-700 text-white font-bold text-base shadow-xl shadow-brand-500/25 transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                    <span>Book a Strategy Call</span>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </a>
+                <a href="#services" class="w-full sm:w-auto px-8 py-4 rounded-xl border border-slate-300 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 font-semibold text-base transition-colors flex items-center justify-center gap-2">
+                    Explore Our Services
+                </a>
+            </div>
+
+            <p class="text-sm text-slate-500 dark:text-slate-400 max-w-2xl mx-auto mb-14">
+                From first roadmap to long-term optimization, one senior team keeps your digital growth moving forward.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
+                <div class="p-5 rounded-2xl bg-white/60 dark:bg-slate-900/40 border border-slate-200/70 dark:border-slate-800">
+                    <i class="ph-bold ph-gauge text-2xl text-brand-600 dark:text-accent-400"></i>
+                    <div class="mt-2 font-semibold">Faster operations</div>
+                </div>
+                <div class="p-5 rounded-2xl bg-white/60 dark:bg-slate-900/40 border border-slate-200/70 dark:border-slate-800">
+                    <i class="ph-bold ph-path text-2xl text-brand-600 dark:text-accent-400"></i>
+                    <div class="mt-2 font-semibold">Better customer journeys</div>
+                </div>
+                <div class="p-5 rounded-2xl bg-white/60 dark:bg-slate-900/40 border border-slate-200/70 dark:border-slate-800">
+                    <i class="ph-bold ph-chart-line-up text-2xl text-brand-600 dark:text-accent-400"></i>
+                    <div class="mt-2 font-semibold">Measurable growth</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-24 border-t border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-500 dark:text-accent-400 mb-3">What we do</h2>
+                <p class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4">From digital foundations to scalable growth.</p>
+                <p class="text-slate-600 dark:text-slate-400 text-lg">You do not need more disconnected tools or vague advice. You need a clear plan, reliable execution, and systems that improve as your business grows.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-6">
+                <article class="rounded-3xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 p-8 flex flex-col shadow-lg">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-500/10 text-brand-600 dark:text-accent-400 flex items-center justify-center text-3xl mb-6">
+                        <i class="ph-bold ph-browsers"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Websites and web platforms built to perform.</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">Create a faster, clearer digital experience with web architecture designed around your customers, your team, and your growth goals.</p>
+                    <ul class="space-y-3 text-sm font-medium text-slate-700 dark:text-slate-300 mb-8">
+                        <li class="flex items-start gap-3"><i class="ph-bold ph-check-circle text-emerald-500 text-xl mt-0.5"></i> High-performance websites and web applications</li>
+                        <li class="flex items-start gap-3"><i class="ph-bold ph-check-circle text-emerald-500 text-xl mt-0.5"></i> Scalable technical architecture</li>
+                        <li class="flex items-start gap-3"><i class="ph-bold ph-check-circle text-emerald-500 text-xl mt-0.5"></i> Responsive experiences across every device</li>
+                    </ul>
+                    <a href="#contact" class="mt-auto inline-flex items-center gap-2 text-brand-600 dark:text-accent-400 font-bold hover:underline">
+                        Improve Your Digital Foundation <i class="ph-bold ph-arrow-right"></i>
+                    </a>
+                </article>
+
+                <article class="rounded-3xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 p-8 flex flex-col shadow-lg">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-500/10 text-brand-600 dark:text-accent-400 flex items-center justify-center text-3xl mb-6">
+                        <i class="ph-bold ph-flow-arrow"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Replace repetitive work with intelligent workflows.</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">Connect the tools your team already uses and automate the handoffs that slow everyone down, from lead intake to reporting and follow-up.</p>
+                    <ul class="space-y-3 text-sm font-medium text-slate-700 dark:text-slate-300 mb-8">
+                        <li class="flex items-start gap-3"><i class="ph-bold ph-check-circle text-emerald-500 text-xl mt-0.5"></i> Less manual data entry</li>
+                        <li class="flex items-start gap-3"><i class="ph-bold ph-check-circle text-emerald-500 text-xl mt-0.5"></i> Faster lead response and qualification</li>
+                        <li class="flex items-start gap-3"><i class="ph-bold ph-check-circle text-emerald-500 text-xl mt-0.5"></i> More consistent internal processes</li>
+                    </ul>
+                    <a href="#contact" class="mt-auto inline-flex items-center gap-2 text-brand-600 dark:text-accent-400 font-bold hover:underline">
+                        Find Your Best Automation Opportunities <i class="ph-bold ph-arrow-right"></i>
+                    </a>
+                </article>
+
+                <article class="rounded-3xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 p-8 flex flex-col shadow-lg">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-500/10 text-brand-600 dark:text-accent-400 flex items-center justify-center text-3xl mb-6">
+                        <i class="ph-bold ph-trend-up"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Turn more of the right traffic into revenue.</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">Use better measurement, sharper funnels, and continuous testing to understand what is working and improve what is not.</p>
+                    <ul class="space-y-3 text-sm font-medium text-slate-700 dark:text-slate-300 mb-8">
+                        <li class="flex items-start gap-3"><i class="ph-bold ph-check-circle text-emerald-500 text-xl mt-0.5"></i> Clearer attribution and reporting</li>
+                        <li class="flex items-start gap-3"><i class="ph-bold ph-check-circle text-emerald-500 text-xl mt-0.5"></i> Higher-converting customer journeys</li>
+                        <li class="flex items-start gap-3"><i class="ph-bold ph-check-circle text-emerald-500 text-xl mt-0.5"></i> Prioritized experiments tied to business goals</li>
+                    </ul>
+                    <a href="#contact" class="mt-auto inline-flex items-center gap-2 text-brand-600 dark:text-accent-400 font-bold hover:underline">
+                        Improve Your Conversion Path <i class="ph-bold ph-arrow-right"></i>
+                    </a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-we-help" class="py-24 bg-slate-100/50 dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-500 dark:text-accent-400 mb-3">Why teams choose us</h2>
+                <p class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4">Senior thinking. Practical execution. Clearer outcomes.</p>
+                <p class="text-slate-600 dark:text-slate-400 text-lg">We bridge strategy and implementation so your team can make confident decisions and see progress without managing another disconnected group of specialists.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-10">
+                <div class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                    <i class="ph-bold ph-users-three text-3xl text-brand-600 dark:text-accent-400"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-3">One accountable partner</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">You get a coordinated team across strategy, engineering, automation, and growth, with fewer handoffs and clearer ownership.</p>
+                </div>
+                <div class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                    <i class="ph-bold ph-target text-3xl text-brand-600 dark:text-accent-400"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-3">Built around your business</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">We start with your goals, constraints, customers, and existing systems, then recommend only what moves the work forward.</p>
+                </div>
+                <div class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                    <i class="ph-bold ph-chart-bar text-3xl text-brand-600 dark:text-accent-400"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-3">Progress you can see</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Every engagement is tied to defined priorities, visible milestones, and metrics that matter to your business.</p>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="#process" class="inline-flex items-center gap-2 font-bold text-brand-600 dark:text-accent-400 hover:underline">
+                    See How We Work <i class="ph-bold ph-arrow-down"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-500 dark:text-accent-400 mb-3">A clearer way to move forward</h2>
+                <p class="text-3xl sm:text-5xl font-extrabold tracking-tight">From growth challenge to working solution.</p>
+            </div>
+
+            <ol class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <li class="p-7 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50">
+                    <div class="text-sm font-extrabold tracking-widest text-brand-600 dark:text-accent-400 mb-3">01</div>
+                    <h3 class="text-xl font-bold mb-2">Diagnose</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">We map the current experience, identify friction, and uncover the highest-impact opportunities.</p>
+                </li>
+                <li class="p-7 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50">
+                    <div class="text-sm font-extrabold tracking-widest text-brand-600 dark:text-accent-400 mb-3">02</div>
+                    <h3 class="text-xl font-bold mb-2">Prioritize</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">We turn findings into a focused roadmap with clear decisions, milestones, and measures of success.</p>
+                </li>
+                <li class="p-7 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50">
+                    <div class="text-sm font-extrabold tracking-widest text-brand-600 dark:text-accent-400 mb-3">03</div>
+                    <h3 class="text-xl font-bold mb-2">Build</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">We design and implement the right web, automation, and growth systems for your stage of business.</p>
+                </li>
+                <li class="p-7 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50">
+                    <div class="text-sm font-extrabold tracking-widest text-brand-600 dark:text-accent-400 mb-3">04</div>
+                    <h3 class="text-xl font-bold mb-2">Improve</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">We use performance data and user feedback to refine the system and keep creating value after launch.</p>
+                </li>
+            </ol>
+
+            <div class="text-center mt-12">
+                <a href="#contact" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-brand-600 to-accent-600 text-white font-semibold shadow-lg shadow-brand-500/20">
+                    Start With a Strategy Call <i class="ph-bold ph-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case-study figures are from the revised copy. Confirm each statistic before this page goes live. -->
+    <section id="results" class="py-24 bg-slate-100/50 dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-500 dark:text-accent-400 mb-3">Selected client outcomes</h2>
+                <p class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4">Better systems create better momentum.</p>
+                <p class="text-slate-600 dark:text-slate-400 text-lg">Explore examples of how focused engineering, automation, and growth work can remove bottlenecks and unlock new opportunities.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+                <article class="p-8 sm:p-10 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl">
+                    <p class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-accent-400 mb-3">Investment platform</p>
+                    <h3 class="text-2xl sm:text-3xl font-bold mb-4">Less manual review. More time for high-value decisions.</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-8">Apex Global designed an automated lead-enrichment and triage workflow that reduced repetitive review work and helped the investment team move qualified opportunities forward faster.</p>
+                    <dl class="grid sm:grid-cols-3 gap-4">
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+                            <dt class="text-2xl font-extrabold text-brand-600 dark:text-accent-400">92%</dt>
+                            <dd class="text-xs text-slate-500 mt-1">less manual lead-review time</dd>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+                            <dt class="text-2xl font-extrabold text-brand-600 dark:text-accent-400">22 hrs</dt>
+                            <dd class="text-xs text-slate-500 mt-1">saved per week</dd>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+                            <dt class="text-2xl font-extrabold text-brand-600 dark:text-accent-400">310%</dt>
+                            <dd class="text-xs text-slate-500 mt-1">increase in qualified deal velocity</dd>
+                        </div>
+                    </dl>
+                </article>
+
+                <article class="p-8 sm:p-10 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl">
+                    <p class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-accent-400 mb-3">SaaS platform</p>
+                    <h3 class="text-2xl sm:text-3xl font-bold mb-4">A faster global experience built for international growth.</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-8">We re-architected a multilingual web platform to improve speed, consistency, and the experience for customers across multiple markets.</p>
+                    <dl class="grid sm:grid-cols-3 gap-4">
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+                            <dt class="text-2xl font-extrabold text-brand-600 dark:text-accent-400">12</dt>
+                            <dd class="text-xs text-slate-500 mt-1">localized language experiences</dd>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+                            <dt class="text-2xl font-extrabold text-brand-600 dark:text-accent-400">0.4s</dt>
+                            <dd class="text-xs text-slate-500 mt-1">page render time, down from 3.8 seconds</dd>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+                            <dt class="text-2xl font-extrabold text-brand-600 dark:text-accent-400">145%</dt>
+                            <dd class="text-xs text-slate-500 mt-1">increase in organic conversion rate</dd>
+                        </div>
+                    </dl>
+                </article>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="#contact" class="inline-flex items-center gap-2 font-bold text-brand-600 dark:text-accent-400 hover:underline">
+                    Discuss Your Growth Challenge <i class="ph-bold ph-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="investment" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-500 dark:text-accent-400 mb-3">Engagement options</h2>
+                <p class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4">Choose the level of support your next stage requires.</p>
+                <p class="text-slate-600 dark:text-slate-400 text-lg">Start with a focused engagement or build a longer-term partnership. We will recommend the simplest model that can deliver the outcome you need.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8 items-stretch">
+                <article class="rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 flex flex-col shadow-lg">
+                    <h3 class="text-xl font-bold mb-2">Growth Acceleration</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Best for teams that need a stronger digital foundation and a focused automation or conversion project.</p>
+                    <ul class="space-y-4 text-sm mb-8 text-slate-600 dark:text-slate-300">
+                        <li class="flex items-start gap-3"><i class="ph-bold ph-check text-brand-500 text-lg mt-0.5"></i> Conversion-focused landing page or website improvements</li>
+                        <li class="flex items-start gap-3"><i class="ph-bold ph-check text-brand-500 text-lg mt-0.5"></i> Up to three priority workflow automations</li>
+                        <li class="flex items-start gap-3"><i class="ph-bold ph-check text-brand-500 text-lg mt-0.5"></i> Mobile performance improvements</li>
+                        <li class="flex items-start gap-3"><i class="ph-bold ph-check text-brand-500 text-lg mt-0.5"></i> Foundational analytics setup</li>
+                    </ul>
+                    <a href="#contact" class="mt-auto w-full text-center py-3.5 rounded-xl border border-brand-500/30 hover:bg-brand-500/10 text-brand-600 dark:text-accent-400 font-semibold text-sm transition-all">
+                        Discuss a Growth Engagement
+                    </a>
+                </article>
+
+                <article class="rounded-3xl bg-white dark:bg-slate-900 border-2 border-brand-500 p-8 flex flex-col shadow-2xl">
+                    <h3 class="text-xl font-bold mb-2">Enterprise Digital</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Best for growing organizations that need ongoing engineering, automation, and conversion support.</p>
+                    <ul class="space-y-4 text-sm mb-8 text-slate-600 dark:text-slate-300">
+                        <li class="flex items-start gap-3"><i class="ph-bold ph-check text-brand-500 text-lg mt-0.5"></i> Scalable web platform architecture</li>
+                        <li class="flex items-start gap-3"><i class="ph-bold ph-check text-brand-500 text-lg mt-0.5"></i> Advanced workflow automation</li>
+                        <li class="flex items-start gap-3"><i class="ph-bold ph-check text-brand-500 text-lg mt-0.5"></i> Ongoing conversion optimization</li>
+                        <li class="flex items-start gap-3"><i class="ph-bold ph-check text-brand-500 text-lg mt-0.5"></i> A dedicated senior solutions lead</li>
+                    </ul>
+                    <a href="#contact" class="mt-auto w-full text-center py-3.5 rounded-xl bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-700 hover:to-accent-700 text-white font-semibold text-sm shadow-lg shadow-brand-500/20 transition-all">
+                        Book an Enterprise Consultation
+                    </a>
+                </article>
+
+                <article class="rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 flex flex-col shadow-lg">
+                    <h3 class="text-xl font-bold mb-2">Custom Partnership</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Best for larger organizations with complex requirements, multiple markets, or an ongoing need for specialized technical capacity.</p>
+                    <ul class="space-y-4 text-sm mb-8 text-slate-600 dark:text-slate-300">
+                        <li class="flex items-start gap-3"><i class="ph-bold ph-check text-brand-500 text-lg mt-0.5"></i> A tailored delivery model</li>
+                        <li class="flex items-start gap-3"><i class="ph-bold ph-check text-brand-500 text-lg mt-0.5"></i> Dedicated engineering and strategy support</li>
+                        <li class="flex items-start gap-3"><i class="ph-bold ph-check text-brand-500 text-lg mt-0.5"></i> Custom reporting and governance</li>
+                        <li class="flex items-start gap-3"><i class="ph-bold ph-check text-brand-500 text-lg mt-0.5"></i> Roadmap planning aligned with business priorities</li>
+                    </ul>
+                    <a href="#contact" class="mt-auto w-full text-center py-3.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-sm transition-all">
+                        Discuss a Custom Partnership
+                    </a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="stories" class="py-24 bg-slate-100/50 dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-500 dark:text-accent-400 mb-3">What clients say</h2>
+                <p class="text-3xl sm:text-5xl font-extrabold tracking-tight">Trusted by teams that expect more from their digital systems.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <blockquote class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl">
+                    <i class="ph-fill ph-quotes text-3xl text-brand-500/40"></i>
+                    <p class="mt-4 text-slate-700 dark:text-slate-300 leading-relaxed">“Apex Global gave us a clear plan, moved quickly, and delivered improvements our team could measure.”</p>
+                </blockquote>
+                <blockquote class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl">
+                    <i class="ph-fill ph-quotes text-3xl text-brand-500/40"></i>
+                    <p class="mt-4 text-slate-700 dark:text-slate-300 leading-relaxed">“The automation removed hours of repetitive work every month and gave our team more time to focus on customers.”</p>
+                </blockquote>
+                <blockquote class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl">
+                    <i class="ph-fill ph-quotes text-3xl text-brand-500/40"></i>
+                    <p class="mt-4 text-slate-700 dark:text-slate-300 leading-relaxed">“Strong communication, thoughtful engineering, and a much better experience for our users.”</p>
+                </blockquote>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-start">
+                <div class="space-y-6 lg:pt-6">
+                    <p class="text-xs font-bold uppercase tracking-widest text-brand-500 dark:text-accent-400">Ready to move forward?</p>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight">Bring us the bottleneck. Leave with a clearer path.</h2>
+                    <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">Tell us what is slowing growth, creating unnecessary work, or holding back your digital experience. In a focused 30-minute conversation, we will identify the most practical next step.</p>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Prefer email? Contact our solutions team and tell us what you are trying to improve.</p>
+                    <a href="mailto:solutions@apexglobal.com" class="inline-flex items-center gap-3 p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-semibold text-sm">
+                        <i class="ph-bold ph-envelope-simple text-xl text-brand-500"></i>
+                        solutions@apexglobal.com
+                    </a>
+                </div>
+
+                <div class="p-8 sm:p-10 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl">
+                    <div x-show="formSubmitted" x-transition class="p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-400">
+                        <div class="flex items-start gap-3">
+                            <i class="ph-bold ph-check-circle text-2xl"></i>
+                            <div>
+                                <p class="font-semibold">Thanks. We have your request and will review your goals before the call.</p>
+                                <p class="text-sm mt-2 opacity-80">Your information is used only to respond to your request.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form x-show="!formSubmitted" @submit.prevent="submitForm" class="space-y-5">
+                        <p x-show="formError" x-text="formError" class="text-sm font-medium text-rose-500"></p>
+
+                        <div>
+                            <label for="name" class="block text-sm font-semibold mb-2">Your name</label>
+                            <input id="name" type="text" x-model="formData.name" required autocomplete="name" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-500 outline-none text-sm">
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="email" class="block text-sm font-semibold mb-2">Work email</label>
+                                <input id="email" type="email" x-model="formData.email" required autocomplete="email" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-500 outline-none text-sm">
+                            </div>
+                            <div>
+                                <label for="company" class="block text-sm font-semibold mb-2">Company</label>
+                                <input id="company" type="text" x-model="formData.company" autocomplete="organization" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-500 outline-none text-sm">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="improve" class="block text-sm font-semibold mb-2">What would you like to improve?</label>
+                                <select id="improve" x-model="formData.improve" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-500 outline-none text-sm">
+                                    <option value="">Select one</option>
+                                    <option>Website or web platform</option>
+                                    <option>Workflow automation</option>
+                                    <option>Conversion and growth</option>
+                                    <option>A broader digital system</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="investment" class="block text-sm font-semibold mb-2">Approximate investment range</label>
+                                <select id="investment" x-model="formData.investment" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-500 outline-none text-sm">
+                                    <option value="">Select a range</option>
+                                    <option>Under $10,000</option>
+                                    <option>$10,000 – $25,000</option>
+                                    <option>$25,000 – $50,000</option>
+                                    <option>$50,000+</option>
+                                    <option>Not sure yet</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="goals" class="block text-sm font-semibold mb-2">Tell us about your goals</label>
+                            <textarea id="goals" x-model="formData.goals" rows="4" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-500 outline-none text-sm"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-700 hover:to-accent-700 text-white font-bold text-sm shadow-xl shadow-brand-500/25 transition-all">
+                            Request My Strategy Call
+                        </button>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 text-center">Your information is used only to respond to your request.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 text-sm text-slate-500 dark:text-slate-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white">
+                        <i class="ph-bold ph-lightning text-lg"></i>
+                    </div>
+                    <span class="font-extrabold text-sm text-slate-900 dark:text-white tracking-tight">APEX GLOBAL</span>
+                </div>
+                <p class="mt-2 text-xs">Digital systems for ambitious growth.</p>
+            </div>
+            <a href="#contact" class="font-semibold text-brand-600 dark:text-accent-400 hover:underline">Book a Strategy Call</a>
+            <p class="text-xs">&copy; 2026 Apex Global Media LLC. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
